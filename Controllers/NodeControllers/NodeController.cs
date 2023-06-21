@@ -21,6 +21,11 @@ namespace Excercise_2_API.Controllers.NodeControllers
             _nodeRepository = nodeRepository;
             _nodeAttributeRepository = nodeAttributeRepository;
         }
+
+        /// <summary>
+        /// get all node
+        /// </summary>
+        /// <returns>A list of GetNodeModel</returns>
         [HttpGet]
         public async Task<IActionResult> GetAllNodeAsync()
         {
@@ -34,6 +39,11 @@ namespace Excercise_2_API.Controllers.NodeControllers
                 throw;
             }
         }
+        /// <summary>
+        /// get node by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>a GetNodeModel</returns>
         [HttpGet("id")]
         public async Task<IActionResult> GetNodeByIdAsync([FromHeader]int id)
         {
@@ -51,6 +61,13 @@ namespace Excercise_2_API.Controllers.NodeControllers
                 throw;
             }
         }
+
+        /// <summary>
+        /// Add a node and it's list nodeAttribute 
+        /// </summary>
+        /// <param name="nodemodel"></param>
+        /// <param name="nodeAttributeModels"></param>
+        /// <returns>return a list of all node</returns>
         [HttpPost]
         public async Task<IActionResult> AddNodeAsync([FromBody]AddNodeModel nodemodel,[FromForm]AddNodeAttributeModel[]? nodeAttributeModels)
         {
@@ -71,6 +88,12 @@ namespace Excercise_2_API.Controllers.NodeControllers
                 throw;
             }
         }
+
+        /// <summary>
+        /// Update a node
+        /// </summary>
+        /// <param name="nodeModel"></param>
+        /// <returns> return node after update</returns>
         [HttpPut]
         public async Task<IActionResult> UpdateNodeAsync(UpdateNodeModel nodeModel)
         {
@@ -93,6 +116,12 @@ namespace Excercise_2_API.Controllers.NodeControllers
                 throw;
             }
         }
+
+        /// <summary>
+        /// Delete node by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> return list of all node after delete</returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteNodeById(int id)
         {

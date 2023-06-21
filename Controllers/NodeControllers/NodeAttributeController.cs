@@ -40,5 +40,52 @@ namespace Excercise_2_API.Controllers.NodeControllers
                 throw;
             }
         }
+        [HttpGet("id")]
+        public async Task<IActionResult> GetNodeAttributeByNodeIdAsync(int nodeId)
+        {
+            try
+            {
+                var node = await _nodeRepository.GetNodeByIdAsync(nodeId);
+                if (node == null)
+                    return BadRequest("Node doesn't exist!");
+                var result = await _nodeAttributeRepository.GetNodeAttributeByNodeIdAsync(nodeId);
+                return Ok(result);
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteNodeAttributeByIdAsync(int id)
+        {
+            try
+            {
+                var nodeAttribute = await _nodeAttributeRepository.GetNodeAttributeByIdAsync(id);
+                if(nodeAttribute == null)
+                {
+                    return BadRequest("Node attribute doesn't exist!");
+                }
+                var result = await _nodeAttributeRepository.DeleteNodeAttributeByIdAsync(id);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpDelete("/Node")]
+        public async Task<IActionResult> DeleteNodeAttributeByNodeIdAsync(int nodeId)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
     }
 }
